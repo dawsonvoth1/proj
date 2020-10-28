@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from "react";
 
+const port = process.env.PORT || 5000;
+
 const EditTodo = ({ todo }) => {
   const [description, setDescription] = useState(todo.description);
 
@@ -10,7 +12,7 @@ const EditTodo = ({ todo }) => {
     try {
       const body = { description };
       const response = await fetch(
-        `http://localhost:5000/todos/${todo.todo_id}`,
+        `${port}${todo.todo_id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
