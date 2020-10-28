@@ -1,0 +1,21 @@
+{
+  "name": "proj",
+  "version": "1.0.0",
+  "description": "<img src=\"https://www.freecodecamp.org/news/content/images/size/w2000/2020/03/PERN.png\" />",
+  "main": "index.js",
+  "scripts": {
+    "start": "(cd server && npm run watch) & (cd client && npm run build && npm run start)",
+    "dev": "(cd server && npm run watch) & (cd client && npm run build && npm run start)",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dawsonvoth1/proj.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dawsonvoth1/proj/issues"
+  },
+  "homepage": "https://github.com/dawsonvoth1/proj#readme"
+}
