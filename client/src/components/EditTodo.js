@@ -1,6 +1,12 @@
 import React, { Fragment, useState } from "react";
-
-const port = process.env.PORT || 5000;
+const Pool = require("pg").Pool;
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+console.log(pool);
 
 const EditTodo = ({ todo }) => {
   const [description, setDescription] = useState(todo.description);
@@ -12,7 +18,7 @@ const EditTodo = ({ todo }) => {
     try {
       const body = { description };
       const response = await fetch(
-        `${port}${todo.todo_id}`,
+        `${pool}${todo.todo_id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

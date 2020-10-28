@@ -1,21 +1,21 @@
 {
-  "name": "proj",
+  "name": "server",
   "version": "1.0.0",
-  "description": "<img src=\"https://www.freecodecamp.org/news/content/images/size/w2000/2020/03/PERN.png\" />",
+  "description": "",
   "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pg": "^8.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
   "scripts": {
-    "start": "(cd server && npm run start) & (cd client && npm run build && npm run start)",
-    "dev": "(cd server && npm run start) & (cd client && npm run build && npm run start)",
+    "start": "nodemon index.js",
+    "watch": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dawsonvoth1/proj.git"
-  },
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dawsonvoth1/proj/issues"
-  },
-  "homepage": "https://peaceful-journey-57742.herokuapp.com/"
+  "license": "ISC"
 }
