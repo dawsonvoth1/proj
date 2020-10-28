@@ -1,12 +1,6 @@
 import React, { Fragment, useState } from "react";
-const Pool = require("pg").Pool;
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
-console.log(pool);
+
+
 
 const EditTodo = ({ todo }) => {
   const [description, setDescription] = useState(todo.description);
@@ -17,9 +11,10 @@ const EditTodo = ({ todo }) => {
     e.preventDefault();
     try {
       const body = { description };
-      const response = await fetch(
-        `${pool}${todo.todo_id}`,
-        {
+
+      //proxy
+
+      const response = await fetch(`${todo.todo_id}`,{
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body)

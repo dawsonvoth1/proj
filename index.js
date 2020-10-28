@@ -2,12 +2,23 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require("./db");
-const port = process.env.DATABASE_URL;
-console.log(port);
+const path =require("path");
+const PORT = process.env.PORT || 5000;
+
+//process.env.NODE_ENV => production or underfined
+
 //middleware
 app.use(cors());
 app.use(express.json()); //req.body
 
+if(process.env.NODE_ENV === "production"){
+  //server static content
+  //npm run build
+  app.use(express.static(path.join(__dirname, "client/build")));
+};
+
+console.log(__dirname);
+console.log(path.join(__dirname, "client/build"));
 //ROUTES//
 
 //create a todo
@@ -84,6 +95,10 @@ app.delete("/todos/:id", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log("server has started on port 5000");
+app.get("*", (req,res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"))
+});
+
+app.listen(PORT, () => {
+  console.log('server has started on port ${PORT}',[PORT]);
 });
