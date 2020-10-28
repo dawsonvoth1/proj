@@ -1,25 +1,19 @@
 import React, { Fragment, useState } from "react";
 
-
-
 const EditTodo = ({ todo }) => {
-  const [description, setDescription] = useState(todo.description);
+  //editText function
 
-  //edit description function
-
-  const updateDescription = async e => {
-    e.preventDefault();
+  const editText = async (id) => {
     try {
       const body = { description };
 
       //proxy
 
-      const response = await fetch(`${todo.todo_id}`,{
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
-        }
-      );
+      const res = await fetch(`/todos/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
 
       window.location = "/";
     } catch (err) {
@@ -27,6 +21,7 @@ const EditTodo = ({ todo }) => {
     }
   };
 
+  const [description, setDescription] = useState(todo.description);
   return (
     <Fragment>
       <button
@@ -37,10 +32,7 @@ const EditTodo = ({ todo }) => {
       >
         Edit
       </button>
-
-      {/* 
-        id = id10
-      */}
+      {/* id = "id21"*/}
       <div
         class="modal"
         id={`id${todo.todo_id}`}
@@ -65,7 +57,7 @@ const EditTodo = ({ todo }) => {
                 type="text"
                 className="form-control"
                 value={description}
-                onChange={e => setDescription(e.target.value)}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </div>
 
@@ -74,7 +66,7 @@ const EditTodo = ({ todo }) => {
                 type="button"
                 class="btn btn-warning"
                 data-dismiss="modal"
-                onClick={e => updateDescription(e)}
+                onClick={() => editText(todo.todo_id)}
               >
                 Edit
               </button>
